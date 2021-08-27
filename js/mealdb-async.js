@@ -34,6 +34,9 @@ const displayError = () => {
 
 // add meals to meals container
 const displayMeals = (meals) => {
+    // hide spinner
+    document.getElementById("spinner").style.display = "none";
+
     const mealsContainer = document.getElementById("display-meals");
     // mealsContainer.innerHTML = "";
     mealsContainer.textContent = ""; // clears meal container
