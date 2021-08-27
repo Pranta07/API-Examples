@@ -38,7 +38,10 @@ const displayMeals = (meals) => {
             const div = document.createElement("div");
             div.classList.add("col");
             div.innerHTML = `
-                <div onclick="mealFetchById(${meal.idMeal})" class="card h-100">
+                <div 
+                    onclick="mealFetchById(${meal.idMeal})" 
+                    class="card h-100 border-0 shadow"
+                    >
                     <img 
                         src="${
                             meal.strMealThumb
@@ -68,8 +71,8 @@ const mealDetails = (meal) => {
     const details = document.getElementById("meal-details");
     details.textContent = ""; //clears everything on each calls
     details.innerHTML = `
-        <div class="card mb-3 mx-auto" style="max-width: 540px">
-            <div class="row g-0">
+        <div class="card border border-0 shadow mb-3 mx-auto" style="max-width: 540px">
+            <div class="row g-0 card-body">
                     <div class="col-md-4">
                         <img
                             src="${meal.strMealThumb}"
@@ -78,7 +81,7 @@ const mealDetails = (meal) => {
                         />
                     </div>
                     <div class="col-md-8">
-                        <div class="card-body">
+                        <div class="ps-3">
                             <h5 class="card-title">${meal.strMeal}</h5>
                             <p class="card-text">
                             ${meal.strInstructions.slice(0, 100)}
