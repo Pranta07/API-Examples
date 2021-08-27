@@ -27,24 +27,33 @@ const displayMeals = (meals) => {
     const mealsContainer = document.getElementById("display-meals");
     // mealsContainer.innerHTML = "";
     mealsContainer.textContent = ""; // clears meal container
-    meals.forEach((meal) => {
-        //console.log(meal);
-        const div = document.createElement("div");
-        div.classList.add("col");
-        div.innerHTML = `
-            <div onclick="mealFetchById(${meal.idMeal})" class="card h-100">
-                <img 
-                    src="${meal.strMealThumb}" class="card-img-top" alt="..." />
-                <div class="card-body">
-                    <h5 class="card-title">${meal.strMeal}</h5>
-                    <p class="card-text">
-                        ${meal.strInstructions.slice(0, 160)}
-                    </p>
+    if (meals == null) {
+        document.getElementById("not-found").classList.add("display");
+    } else {
+        // remove no results found
+        document.getElementById("not-found").classList.remove("display");
+        // add meals
+        meals.forEach((meal) => {
+            //console.log(meal);
+            const div = document.createElement("div");
+            div.classList.add("col");
+            div.innerHTML = `
+                <div onclick="mealFetchById(${meal.idMeal})" class="card h-100">
+                    <img 
+                        src="${
+                            meal.strMealThumb
+                        }" class="card-img-top" alt="..." />
+                    <div class="card-body">
+                        <h5 class="card-title">${meal.strMeal}</h5>
+                        <p class="card-text">
+                            ${meal.strInstructions.slice(0, 160)}
+                        </p>
+                    </div>
                 </div>
-            </div>
-        `;
-        mealsContainer.appendChild(div);
-    });
+            `;
+            mealsContainer.appendChild(div);
+        });
+    }
 };
 
 const mealFetchById = (id) => {
