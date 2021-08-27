@@ -2,11 +2,16 @@ const randomMeals = async () => {
     // fetch("https://www.themealdb.com/api/json/v1/1/search.php?s=")
     //     .then((res) => res.json())
     //     .then((data) => displayMeals(data.meals));
-    const res = await fetch(
-        "https://www.themealdb.com/api/json/v1/1/search.php?s="
-    );
-    const data = await res.json();
-    displayMeals(data.meals);
+    try {
+        const res = await fetch(
+            "https://www.themealdb.com/api/json/v1/1/search.php?s="
+        );
+        const data = await res.json();
+        displayMeals(data.meals);
+    } catch (error) {
+        // console.log(error);
+        displayError();
+    }
 };
 randomMeals();
 
@@ -19,7 +24,12 @@ const loadData = () => {
     const url = `https://www.themealdb.com/api/json/v1/1/search.php?s=${searchText}`;
     fetch(url)
         .then((res) => res.json())
-        .then((data) => displayMeals(data.meals));
+        .then((data) => displayMeals(data.meals))
+        .catch((error) => displayError()); // handle error msg
+};
+
+const displayError = () => {
+    document.getElementById("error-msg").classList.add("display");
 };
 
 // add meals to meals container
